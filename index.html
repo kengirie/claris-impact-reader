@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Impact Reader</title>
+    <meta name="description" content="ClarisImpact の図・プレゼン・レポートをブラウザで表示するビューア" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap"
+    />
+    <script type="module" crossorigin src="./assets/index-DiLcGEYG.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BPegx3Dg.css">
+  </head>
+  <body>
+    <div class="app" id="app">
+      <header class="bar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-name">Impact Reader</span>
+        </div>
+        <div class="bar-actions">
+          <label class="button primary" for="file-input">ファイルを開く</label>
+          <input id="file-input" type="file" multiple hidden />
+          <div class="zoom" role="group" aria-label="表示倍率">
+            <button class="icon-button" id="zoom-out" type="button" title="縮小 (−)">−</button>
+            <select id="zoom-select" aria-label="倍率">
+              <option value="fit">ページに合わせる</option>
+              <option value="width">幅に合わせる</option>
+              <option value="0.5">50%</option>
+              <option value="0.75">75%</option>
+              <option value="1">100%</option>
+              <option value="1.5">150%</option>
+              <option value="2">200%</option>
+              <option value="3">300%</option>
+            </select>
+            <button class="icon-button" id="zoom-in" type="button" title="拡大 (+)">+</button>
+          </div>
+          <div class="export">
+            <button class="button" id="export-svg" type="button" disabled>SVG で保存</button>
+            <button class="button" id="export-png" type="button" disabled>PNG で保存</button>
+          </div>
+          <button class="button ghost" id="toggle-inspector" type="button" aria-pressed="false">構造</button>
+        </div>
+      </header>
+
+      <aside class="files" aria-label="開いているファイル">
+        <h2 class="section-label">ファイル</h2>
+        <ul class="file-list" id="file-list"></ul>
+        <p class="files-empty" id="files-empty">まだ開いていません。左上の「ファイルを開く」か、ドラッグ＆ドロップで追加します。</p>
+        <div class="pages" id="pages" hidden>
+          <h2 class="section-label" id="pages-label">スライド</h2>
+          <ol class="page-list" id="page-list"></ol>
+        </div>
+      </aside>
+
+      <main class="desk" id="desk" tabindex="-1">
+        <section class="empty" id="empty">
+          <div class="empty-sheet">
+            <div class="empty-body">
+            <p class="empty-eyebrow">ClarisImpact 1.0 / 2.0 · Mac / Windows</p>
+            <h1>ここに ClarisImpact のファイルをドロップ</h1>
+            <p>
+              図（ドローイング）、プレゼンテーション、レポート、スタイルファイルを表示できます。Windows 版の
+              <code>.CID</code> <code>.CIT</code> などの圧縮ファイルも読み込めます。
+            </p>
+            <p class="empty-note">ファイルはこのブラウザの中だけで読み込みます。どこにも送信しません。</p>
+            <label class="button primary" for="file-input">ファイルを選ぶ</label>
+            </div>
+          </div>
+        </section>
+        <div class="stage" id="stage" hidden>
+          <div class="sheet" id="sheet"></div>
+        </div>
+        <div class="drop-hint" id="drop-hint" hidden>ドロップして開く</div>
+      </main>
+
+      <aside class="inspector" id="inspector" hidden aria-label="文書の構造">
+        <h2 class="section-label">文書の情報</h2>
+        <dl class="facts" id="facts"></dl>
+        <h2 class="section-label">構造</h2>
+        <div class="tree" id="tree"></div>
+      </aside>
+
+      <footer class="status" id="status" aria-live="polite"></footer>
+    </div>
+  </body>
+</html>
